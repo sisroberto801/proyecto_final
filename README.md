@@ -11,6 +11,10 @@
 - **Nombre:** Roberto Carlos Olguin Ledezma
 - **Fecha:** Mayo 2026
 
+## 🔗 Enlaces del Proyecto
+- **Backend**: [Repositorio Backend](https://github.com/tu-usuario/proyecto-final-backend)
+- **Frontend**: [Repositorio Frontend](https://github.com/tu-usuario/proyecto-final-frontend)
+
 ## Estructura
 ```
 proyecto_final/
