@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:8.0
+    container_name: mysql_cv
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - cv_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  backend:
+    image: olguin-backend:v1
+    container_name: backend_cv
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DIALECT: ${DB_DIALECT}
+      DB_USE_SSL: ${DB_USE_SSL}
+      PORT: ${PORT}
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - cv_network
+
+  frontend:
+    image: olguin-frontend:v1
+    container_name: frontend_cv
+    restart: always
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - cv_network
+
+volumes:
+  mysql_data:
+
+networks:
+  cv_network:
+    driver: bridge
