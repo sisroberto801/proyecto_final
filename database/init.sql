@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS formacion (
 );
 
 INSERT INTO persona (nombre, apellido, ciudad, foto) VALUES 
-('Roberto', 'Garcia', 'Mexico City', 'https://images.pexels.com/photos/36773391/pexels-photo-36773391.jpeg');
+('Roberto Carlos', 'Olguin Ledezma', 'Cochabamba', 'https://images.pexels.com/photos/36773391/pexels-photo-36773391.jpeg');
 
 INSERT INTO formacion (titulo, institucion, anio, persona_id) VALUES 
 ('Computer Systems Engineering', 'Technological University', '2020', 1),
