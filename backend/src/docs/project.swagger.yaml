@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: API CV
+  version: 1.0.0
+  description: Documentación de la API para gestión de CV (Swagger + Express)
+paths:
+  /cv:
+    get:
+      tags:
+        - CV
+      summary: Obtiene el CV completo de una persona
+      description: Retorna la información personal y formación académica
+      responses:
+        '200':
+          description: CV encontrado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  nombre:
+                    type: string
+                    example: "Roberto"
+                  apellido:
+                    type: string
+                    example: "Garcia"
+                  ciudad:
+                    type: string
+                    example: "Mexico City"
+                  foto:
+                    type: string
+                    example: "https://via.placeholder.com/150"
+                  formacion:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        titulo:
+                          type: string
+                          example: "Computer Systems Engineering"
+                        institucion:
+                          type: string
+                          example: "Technological University"
+                        anio:
+                          type: string
+                          example: "2020"
+        '404':
+          description: CV no encontrado
+        '500':
+          description: Error interno del servidor
