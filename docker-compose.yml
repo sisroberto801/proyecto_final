@@ -23,12 +23,9 @@ services:
       retries: 10
 
   backend:
-    image: olguin-backend:v1
+    image: sisroberto801/olguin-backend:v1
     container_name: backend_cv
     restart: always
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
     ports:
       - "4000:4000"
     environment:
@@ -46,12 +43,9 @@ services:
       - cv_network
 
   frontend:
-    image: olguin-frontend:v1
+    image: sisroberto801/olguin-frontend:v1
     container_name: frontend_cv
     restart: always
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
     ports:
       - "3000:80"
     depends_on:

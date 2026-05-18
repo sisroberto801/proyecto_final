@@ -4,6 +4,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Node modules (all levels)
+
 # IDE
 .idea/
 .vscode/

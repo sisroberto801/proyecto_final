@@ -97,6 +97,22 @@ docker-compose down -v --rmi all
 docker-compose build --no-cache
 ```
 
+### Publicar imágenes en Docker Hub
+```bash
+# Construir imágenes locales
+docker build -t olguin-backend:v1 ./backend
+docker build -t olguin-frontend:v1 ./frontend
+
+# Taggear con username de Docker Hub
+docker tag olguin-backend:v1 sisroberto801/olguin-backend:v1
+docker tag olguin-frontend:v1 sisroberto801/olguin-frontend:v1
+
+# Login y publicar
+docker login
+docker push sisroberto801/olguin-backend:v1
+docker push sisroberto801/olguin-frontend:v1
+```
+
 ## Puertos
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:4000
